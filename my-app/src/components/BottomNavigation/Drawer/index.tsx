@@ -13,7 +13,7 @@ import {
 	Button,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import CloseIcon from "@mui/icons-material";
+import CloseIcon from "@mui/icons-material/Close";
 import React, { FC } from "react";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Box } from "@mui/system";

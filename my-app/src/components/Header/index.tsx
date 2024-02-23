@@ -42,7 +42,7 @@ const Header: React.FC<IHeaderProps> = (): JSX.Element => {
 								textDecoration: "none",
 							}}
 						>
-							TurkStyle
+							70Rang
 						</Typography>
 						<Typography
 							variant="h5"
@@ -60,7 +60,7 @@ const Header: React.FC<IHeaderProps> = (): JSX.Element => {
 								justifyContent: "center",
 							}}
 						>
-							TurkStyle
+							70Rang
 						</Typography>
 						<Box
 							sx={{
