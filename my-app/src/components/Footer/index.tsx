@@ -19,12 +19,12 @@ const Copyright = () => {
 			flexWrap={"wrap"}
 		>
 			<Typography variant="caption" fontWeight="bold" color="text.secondary">
-				کلیه حقوق مادی و معنوی این سایت متعلق به فروشگاه ترک استایل می‌باشد
+				کلیه حقوق مادی و معنوی این سایت متعلق به فروشگاه 70رنگ می‌باشد
 			</Typography>
 			<Box dir={"ltr"}>
 				<Typography variant="caption" fontWeight="bold" color="text.secondary">
 					<MLink component={Link} color="inherit" href="/dashboard">
-						TurkStyle.com
+						70Rang.ir
 					</MLink>
 					{" - "}
 					{new Date().getFullYear()}
