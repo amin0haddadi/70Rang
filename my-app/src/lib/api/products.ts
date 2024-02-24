@@ -11,7 +11,7 @@ interface IFetchProductsParams {
 // Fetches all products based on search string
 export async function fetchProducts(
 	params: IFetchProductsParams
-): Promise<ServerResponse<Product>> {
+): Promise<ServerResponse<ProductsResponse>> {
 	noStore();
 	try {
 		const query = new URLSearchParams();
@@ -46,4 +46,3 @@ export async function fetchProduct(
 		throw e;
 	}
 }
-

@@ -19,7 +19,7 @@ const Copyright = () => {
 			flexWrap={"wrap"}
 		>
 			<Typography variant="caption" fontWeight="bold" color="text.secondary">
-				کلیه حقوق مادی و معنوی این سایت متعلق به فروشگاه 70رنگ می‌باشد
+				کلیه حقوق مادی و معنوی این سایت متعلق به فروشگاه 70Rang می‌باشد
 			</Typography>
 			<Box dir={"ltr"}>
 				<Typography variant="caption" fontWeight="bold" color="text.secondary">

@@ -13,10 +13,11 @@ import Link from "next/link";
 import * as React from "react";
 import BasketButton from "../Basket";
 import LongMenu from "../Category";
+import AuthDialog from "../AuthDialog";
 
 const pages = [
-	{ title: "ست‌ها", href: "/sets" },
-	{ title: "خرید حضوری", href: "/shop" },
+	{ title: "فروش ویژه", href: "/special" },
+	{ title: "آدرس حضوری", href: "/shop" },
 ];
 
 interface IHeaderProps {}
@@ -88,6 +89,7 @@ const Header: React.FC<IHeaderProps> = (): JSX.Element => {
 							))}
 						</Box>
 						<Box sx={{ display: { xs: "none", md: "flex" } }}>
+							<AuthDialog />
 							<IconButton size="large" aria-label="search" color="inherit">
 								<SearchIcon />
 							</IconButton>
@@ -99,4 +101,5 @@ const Header: React.FC<IHeaderProps> = (): JSX.Element => {
 		</Box>
 	);
 };
+
 export default Header;

@@ -80,4 +80,3 @@ export async function deleteCartItem(id: string) {
 		throw e;
 	}
 }
-

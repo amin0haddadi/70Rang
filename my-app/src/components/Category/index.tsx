@@ -3,11 +3,13 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Box, Button } from "@mui/material";
+import { useEffect, useState } from "react";
+import { fetchCategories } from "@/lib/api/categories";
 import VerticalTabs from "./Tabs";
-import { useState } from "react";
 
 const LongMenu = () => {
 	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+	const [categories, setCategories] = useState<any[]>([]);
 	const open = Boolean(anchorEl);
 	const handleClick = (event: React.MouseEvent<HTMLElement>) => {
 		setAnchorEl(event.currentTarget);
@@ -15,6 +17,9 @@ const LongMenu = () => {
 	const handleClose = () => {
 		setAnchorEl(null);
 	};
+	useEffect(() => {
+		fetchCategories().then((data) => setCategories(data.data.categories));
+	}, []);
 
 	return (
 		<Box
@@ -43,10 +48,13 @@ const LongMenu = () => {
 			<Menu
 				anchorEl={anchorEl}
 				open={open}
-				onClick={handleClose}
 				sx={{ display: { xs: "none", md: "block" } }}
 			>
-				<MenuItem sx={{ padding: 0 }} onMouseLeave={handleClose}>
+				<MenuItem
+					sx={{ padding: 0 }}
+					onMouseLeave={handleClose}
+					onClick={handleClose}
+				>
 					<VerticalTabs />
 				</MenuItem>
 			</Menu>

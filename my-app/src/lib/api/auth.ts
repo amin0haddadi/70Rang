@@ -1,8 +1,9 @@
 import { URL } from "@/constants";
 import { unstable_noStore as noStore } from "next/cache";
+import { getTokens } from "../utils";
 
-// Defines parameters for user registration and login
-interface IRegisterUserParams {
+// Defines parameters for user registration
+export interface IRegisterUserParams {
 	phoneNumber: string;
 	password: string;
 }
@@ -29,9 +30,11 @@ export async function registerUser(
 	}
 }
 
+// Defines parameters for user login
+export interface ILoginUserParams extends IRegisterUserParams {}
 // Logs in a user with the provided username and password
 export async function loginUser(
-	data: IRegisterUserParams
+	data: ILoginUserParams
 ): Promise<ServerResponse<TokensResponse>> {
 	noStore();
 	try {
@@ -57,12 +60,10 @@ export async function fetchProfile(): Promise<ServerResponse<UserResponse>> {
 	// ! Authorization required
 	noStore();
 	try {
-		// ! NOT FUNCTIONAL YET
-		// todo : create getToken function
-		// const token = await getAuthToken();
+		const { access_token } = await getTokens();
 		const res = await fetch(URL.PROFILE, {
 			headers: {
-				// Authorization: `Bearer ${token}`,
+				Authorization: `Bearer ${access_token}`,
 			},
 		});
 		if (!res.ok) {
@@ -77,16 +78,19 @@ export async function fetchProfile(): Promise<ServerResponse<UserResponse>> {
 
 // Function to logout currently authenticated user
 export async function logoutUser() {
+	// ! Authorization required
 	noStore();
 	try {
-		// todo : create getToken function
-		// const token = await getToken()
+		const { access_token } = await getTokens();
 		const res = await fetch(URL.LOGOUT, {
 			headers: {
-				"Content-Type": "application/json",
+				Authorization: `Bearer ${access_token}`,
 			},
-			// body: JSON.stringify({ refresh_token: token }),
 		});
+		if (!res.ok) {
+			throw new Error("HTTP error! status: " + res.status);
+		}
+		return await res.json();
 	} catch (e) {
 		console.error(e);
 		throw e;
@@ -94,18 +98,23 @@ export async function logoutUser() {
 }
 
 // Fetches new tokens for currently authenticated user
-export async function refreshTokens() {
+export async function refreshTokens(): Promise<ServerResponse<TokensResponse>> {
 	noStore();
 	try {
-		// todo : create getToken function
-		// const token = await getRefreshToken()
+		const { refresh_token } = await getTokens();
 		const res = await fetch(URL.REFRESH, {
 			method: "POST",
-			// body: JSON.stringify({ refresh_token: token }),
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({ refresh_token: refresh_token }),
 		});
+		if (!res.ok) {
+			throw new Error("HTTP error! status: " + res.status);
+		}
+		return await res.json();
 	} catch (e) {
 		console.error(e);
 		throw e;
 	}
 }
-

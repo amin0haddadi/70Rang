@@ -17,6 +17,7 @@ const BasketButton = () => {
 		<>
 			<IconButton
 				aria-label="add to shopping cart"
+        size="large"
 				color="inherit"
 				onClick={handleBasketDrawerOpen}
 			>

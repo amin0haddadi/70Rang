@@ -2,9 +2,7 @@ import { URL } from "@/constants";
 import { unstable_noStore as noStore } from "next/cache";
 
 // Fetches all categories
-export async function fetchCategories(
-	search?: string
-): Promise<ServerResponse<CategoriesResponse>> {
+export async function fetchCategories(search?: string) {
 	noStore();
 	try {
 		const query = new URLSearchParams();
@@ -51,4 +49,3 @@ export async function fetchCategory(
 		throw e;
 	}
 }
-

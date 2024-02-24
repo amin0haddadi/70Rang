@@ -14,14 +14,14 @@ type ProductBase = {
 	quantity: number; // Quantity of the product available
 };
 
-type CategoryBase = {
+type Category = {
 	id: string;
 	name: string; // Name of the category
 };
 
 type Product = ProductBase & {
 	description: string; // Description of the product
-	category: CategoryBase; // Category the product belongs to
+	category: Category; // Category the product belongs to
 };
 
 type CartItem = {
@@ -37,15 +37,25 @@ type UserResponse = {
 type TokensResponse = {
 	tokens: { access_token: string; refresh_token: string }; // Object containing access and refresh tokens
 }; // Response structure for tokens
-type ProductsResponse = { products: ProductBase[] }; // Response structure for a list of products
-type ProductResponse = { product: Product }; // Response structure for a single product detail
-type CategoriesResponse = { categories: CategoryBase[] }; // Response structure for a list of categories
+type ProductsResponse = {
+	products: ProductBase[];
+	count: number;
+}; // Response structure for a list of products
+type ProductResponse = {
+	product: Product;
+}; // Response structure for a single product detail
+type CategoriesResponse = {
+	categories: Category[];
+}; // Response structure for a list of categories
 type CategoryResponse = {
-	category: CategoryBase & {
+	category: Category & {
 		products: ProductBase[]; // Category information including a list of products within the category
 	};
+	count: number;
 }; // Response structure for a single category
-type CartsResponse = { carts: CartItem[] }; // Response structure for a list of cart items
+type CartsResponse = {
+	carts: CartItem[];
+}; // Response structure for a list of cart items
 
 // ====== Generic Action Type ======
 type Action<T> = {

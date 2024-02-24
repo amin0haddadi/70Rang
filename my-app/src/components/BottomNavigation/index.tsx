@@ -9,6 +9,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { Paper } from "@mui/material";
 import HeaderDrawer from "./Drawer";
 import BasketButton from "../Basket";
+import Link from "next/link";
 
 const SimpleBottomNavigation = () => {
 	const [value, setValue] = React.useState(0);
@@ -51,6 +52,8 @@ const SimpleBottomNavigation = () => {
 						color="inherit"
 						label="پروفایل"
 						icon={<AccountCircleIcon />}
+						LinkComponent={Link}
+						href="/profile"
 					/>
 					<BottomNavigationAction
 						color="inherit"
