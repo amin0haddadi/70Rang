@@ -6,8 +6,8 @@ import globalStyle from "@/ui/globalStyle";
 import theme from "@/ui/theme";
 
 export const metadata: Metadata = {
-	title: "",
-	description: "",
+	title: "70Rang",
+	description: "70rang main page",
 };
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
