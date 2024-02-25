@@ -1,5 +1,5 @@
+import Slider from "@/components/Slider";
 import { GridView } from "@mui/icons-material";
-import Slider from "react-slick";
 import { Grid } from "@mui/material";
 import Image from "next/image";
 
@@ -23,14 +23,14 @@ const Home = async () => {
 	const p = await res.json();
 	return (
 		<>
-			{p.map((pro: Product, i: number) => (
-				<Image key={i} src={pro.image} width={200} height={200} alt="prod" />
-			))}
-			{/* <Slider>
+			<Slider>
 				{p?.map((pro: Product, i: number) => (
 					<Image key={i} src={pro.image} width={200} height={200} alt="prod" />
 				))}
-			</Slider> */}
+			</Slider>
+			{p.map((pro: Product, i: number) => (
+				<Image key={i} src={pro.image} width={200} height={200} alt="prod" />
+			))}
 			{/* <GridView>
 				{p.map((pro: Product, i: number) => (
 					<Grid item key={i} xs={1}>
