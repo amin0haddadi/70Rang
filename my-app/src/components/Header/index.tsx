@@ -1,19 +1,17 @@
-import SearchIcon from "@mui/icons-material/Search";
 import {
 	AppBar,
 	Badge,
 	Box,
 	Button,
 	Container,
-	IconButton,
 	Toolbar,
 	Typography,
 } from "@mui/material";
 import Link from "next/link";
-import * as React from "react";
 import BasketButton from "../Basket";
 import LongMenu from "../Category";
 import AuthDialog from "../AuthDialog";
+import { SearchDialog, SearchField } from "../Search";
 
 const pages = [
 	{ title: "فروش ویژه", href: "/special" },
@@ -90,9 +88,7 @@ const Header: React.FC<IHeaderProps> = (): JSX.Element => {
 						</Box>
 						<Box sx={{ display: { xs: "none", md: "flex" } }}>
 							<AuthDialog />
-							<IconButton size="large" aria-label="search" color="inherit">
-								<SearchIcon />
-							</IconButton>
+							<SearchDialog />
 							<BasketButton />
 						</Box>
 					</Toolbar>
