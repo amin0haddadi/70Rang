@@ -26,7 +26,6 @@ const theme = createTheme({
 				underline: "hover",
 			},
 		},
-		MuiAutocomplete: { defaultProps: { color: "white" } },
 	},
 	palette: {
 		primary: {

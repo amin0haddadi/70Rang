@@ -11,28 +11,23 @@ import Box from "@mui/material/Box";
 import SearchIcon from "@mui/icons-material/Search";
 import Autocomplete from "@mui/material/Autocomplete";
 import Image from "next/image";
+import { Search } from "@mui/icons-material";
+import { column } from "stylis";
+import SearchCard from "./SearchCard";
 
 interface ISearchProps {}
-
-const countries = [
-	{ code: "AD", label: "Andorra", phone: "376" },
-	{
-		code: "AE",
-		label: "United Arab Emirates",
-		phone: "971",
-	},
-	{ code: "AF", label: "Afghanistan", phone: "93" },
-	{
-		code: "AG",
-		label: "Antigua and Barbuda",
-		phone: "1-268",
-	},
-];
 
 const SearchDialog: FC<ISearchProps> = (): JSX.Element => {
 	const [searchTerm, setSearchTerm] = useState("");
 	const [debouncedSearchTerm] = useDebounce(searchTerm, 500);
 	const [open, setOpen] = useState(false);
+
+	const [first, setfirst] = useState<any>([]);
+	useLayoutEffect(() => {
+		fetch("https://fakestoreapi.com/products")
+			.then((res) => res.json())
+			.then((data) => setfirst(data));
+	}, []);
 
 	const handleClickOpen = () => {
 		setOpen(true);
@@ -57,37 +52,26 @@ const SearchDialog: FC<ISearchProps> = (): JSX.Element => {
 			>
 				<SearchIcon />
 			</IconButton>
-			<Dialog
-				open={open}
-				onClose={handleClose}
-				sx={{
-					position: "absolute",
-					left: 10,
-					top: -700,
-				}}
-			>
+			<Dialog open={open} onClose={handleClose} fullWidth maxWidth={"xs"}>
 				<DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
 					<TextField
 						autoFocus
 						margin="dense"
-						id="search-term"
-						label="Search Term"
+						id="Search"
+						label="Search"
 						type="text"
 						fullWidth
 						value={searchTerm}
 						onChange={handleSearchTermChange}
 					/>
 				</DialogTitle>
-				<DialogContent dividers>
-					<TextField
-						autoFocus
-						margin="dense"
-						id="search-term"
-						label="Search Term"
-						type="text"
-						fullWidth
-						value={searchTerm}
-						onChange={handleSearchTermChange}
+				<DialogContent dividers sx={{ maxHeight: "50%" }}>
+					{first?.map((x: any, i: number) => (
+						<SearchCard key={i} src={x.image} title={x.title} />
+					))}
+					<SearchCard
+						src={first[0]?.image || ""}
+						title={first[0]?.title || ""}
 					/>
 				</DialogContent>
 			</Dialog>
