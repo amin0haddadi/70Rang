@@ -11,7 +11,7 @@ import Link from "next/link";
 import BasketButton from "../Basket";
 import LongMenu from "../Category";
 import AuthDialog from "../AuthDialog";
-import { SearchDialog, SearchField } from "../Search";
+import { SearchDialog } from "../Search";
 
 const pages = [
 	{ title: "فروش ویژه", href: "/special" },
