@@ -12,7 +12,7 @@ interface ISearchCardProps {
 const SearchCard: FC<ISearchCardProps> = ({ src, title }) => {
 	return (
 		<Button
-			sx={{ ml: "auto" }}
+			sx={{ ml: "auto", display: "flex", justifyContent: "start" }}
 			component={Link}
 			href="/"
 			size="large"
@@ -33,7 +33,7 @@ const SearchCard: FC<ISearchCardProps> = ({ src, title }) => {
 					aspectRatio: 3 / 2,
 				}}
 			></Image>
-			<Typography fontWeight={600} fontSize={14} color={"black"}>
+			<Typography fontWeight={500} fontSize={16} color={"black"}>
 				{title}
 			</Typography>
 		</Button>

@@ -66,13 +66,12 @@ const SearchDialog: FC<ISearchProps> = (): JSX.Element => {
 					/>
 				</DialogTitle>
 				<DialogContent dividers sx={{ maxHeight: "50%" }}>
-					{first?.map((x: any, i: number) => (
-						<SearchCard key={i} src={x.image} title={x.title} />
-					))}
-					<SearchCard
-						src={first[0]?.image || ""}
-						title={first[0]?.title || ""}
-					/>
+					{searchTerm &&
+						first
+							?.filter((y: any) => y.title.toLowerCase().includes(searchTerm))
+							.map((x: any, i: number) => (
+								<SearchCard key={i} src={x.image} title={x.title} />
+							))}
 				</DialogContent>
 			</Dialog>
 		</>
