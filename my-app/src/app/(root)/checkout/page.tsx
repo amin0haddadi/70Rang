@@ -1,8 +1,9 @@
-import React, { FC } from "react";
+import CheckoutStepper from "@/components/Stepper";
+import { FC } from "react";
 
 interface ICheckoutProps {}
 const Checkout: FC<ICheckoutProps> = () => {
-	return <div>Checkout</div>;
+	return <CheckoutStepper />;
 };
 
 export default Checkout;
