@@ -1,14 +1,10 @@
 "use client";
 import { FC, useLayoutEffect, useState } from "react";
-import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import { IconButton } from "@mui/material";
-import Box from "@mui/material/Box";
 import SearchIcon from "@mui/icons-material/Search";
-import Autocomplete from "@mui/material/Autocomplete";
-import Image from "next/image";
 import Paper from "@mui/material/Paper";
 import InputBase from "@mui/material/InputBase";
 import SearchCard from "./SearchCard";
@@ -86,45 +82,4 @@ const SearchDialog: FC<ISearchProps> = (): JSX.Element => {
 	);
 };
 
-const SearchField = () => {
-	const [first, setfirst] = useState<any>([]);
-	useLayoutEffect(() => {
-		fetch("https://fakestoreapi.com/products")
-			.then((res) => res.json())
-			.then((data) => setfirst(data));
-	}, []);
-
-	return (
-		<Autocomplete
-			id="country-select-demo"
-			disablePortal
-			sx={{ width: 300, "& .MuiInputBase-root": { color: "white" } }}
-			options={countries}
-			renderOption={(props, option) => (
-				<Box
-					component="li"
-					sx={{ "& > img": { mr: 2, flexShrink: 0 } }}
-					{...props}
-				>
-					<Image
-						loading="lazy"
-						width="20"
-						height={20}
-						src={first[0]?.image || ""}
-						alt=""
-					/>
-					{option.label} ({option.code}) +{option.phone}
-				</Box>
-			)}
-			renderInput={(params) => (
-				<TextField
-					{...params}
-					label="Movie"
-					sx={{ input: { color: "white" }, lable: { color: "white" } }}
-				/>
-			)}
-		/>
-	);
-};
-
-export { SearchDialog, SearchField };
+export { SearchDialog };
