@@ -69,7 +69,15 @@ export default function CheckoutStepper() {
 			<Stepper activeStep={activeStep} alternativeLabel>
 				{steps.map((step) => (
 					<Step key={step.lable}>
-						<StepLabel StepIconComponent={step.icon}>{step.lable}</StepLabel>
+						<StepLabel
+							StepIconComponent={step.icon}
+							icon
+							sx={{
+								"& .Mui-disabled": { color: "#bdbdbd" },
+							}}
+						>
+							{step.lable}
+						</StepLabel>
 					</Step>
 				))}
 			</Stepper>
