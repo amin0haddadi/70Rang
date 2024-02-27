@@ -2,26 +2,22 @@
 import { FC, useLayoutEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
-import { useDebounce } from "use-debounce";
 import { IconButton } from "@mui/material";
 import Box from "@mui/material/Box";
 import SearchIcon from "@mui/icons-material/Search";
 import Autocomplete from "@mui/material/Autocomplete";
 import Image from "next/image";
-import { Search } from "@mui/icons-material";
-import { column } from "stylis";
+import Paper from "@mui/material/Paper";
+import InputBase from "@mui/material/InputBase";
 import SearchCard from "./SearchCard";
 
 interface ISearchProps {}
 
 const SearchDialog: FC<ISearchProps> = (): JSX.Element => {
 	const [searchTerm, setSearchTerm] = useState("");
-	const [debouncedSearchTerm] = useDebounce(searchTerm, 500);
 	const [open, setOpen] = useState(false);
-
 	const [first, setfirst] = useState<any>([]);
 	useLayoutEffect(() => {
 		fetch("https://fakestoreapi.com/products")
@@ -54,21 +50,33 @@ const SearchDialog: FC<ISearchProps> = (): JSX.Element => {
 			</IconButton>
 			<Dialog open={open} onClose={handleClose} fullWidth maxWidth={"xs"}>
 				<DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
-					<TextField
-						autoFocus
-						margin="dense"
-						id="Search"
-						label="Search"
-						type="text"
-						fullWidth
-						value={searchTerm}
-						onChange={handleSearchTermChange}
-					/>
+					<Paper
+						component="form"
+						sx={{
+							p: "2px 10px",
+							display: "flex",
+							alignItems: "center",
+						}}
+					>
+						<InputBase
+							fullWidth
+							autoFocus
+							placeholder="Search Products"
+							inputProps={{ "aria-label": "search google maps" }}
+							onChange={handleSearchTermChange}
+							margin="dense"
+						/>
+						<IconButton type="button" sx={{ p: "10px" }} aria-label="search">
+							<SearchIcon />
+						</IconButton>
+					</Paper>
 				</DialogTitle>
 				<DialogContent dividers sx={{ maxHeight: "50%" }}>
 					{searchTerm &&
 						first
-							?.filter((y: any) => y.title.toLowerCase().includes(searchTerm))
+							?.filter((y: any) =>
+								y.title.toLowerCase().includes(searchTerm.toLowerCase())
+							)
 							.map((x: any, i: number) => (
 								<SearchCard key={i} src={x.image} title={x.title} />
 							))}
