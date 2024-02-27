@@ -36,7 +36,7 @@ const ProductCard: FC<IProductCardProps> = ({ product }) => {
 						}}
 					>
 						<Image
-							src={product.images[0]}
+							src={product.image}
 							// todo : fix Product type (merge ProductBase and Product data type)
 							alt={product?.description}
 							width={400}
@@ -51,7 +51,7 @@ const ProductCard: FC<IProductCardProps> = ({ product }) => {
 					</CardMedia>
 					<CardContent sx={{ textAlign: "center" }}>
 						<Typography gutterBottom variant="h5">
-							{product.name}
+							{product.title.slice(0, 15)}
 						</Typography>
 						<Typography variant="h6" fontWeight={600}>
 							{product.price} تومان

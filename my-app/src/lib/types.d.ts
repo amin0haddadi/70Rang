@@ -7,12 +7,14 @@ type ServerResponse<T> = {
 
 // ====== Base Data Types ======
 type ProductBase = {
-	id: string;
-	name: string; // Name of the product
-	images: string[]; // Array of image URLs for the product
-	price: number; // Price of the product
-	quantity: number; // Quantity of the product available
-};
+	id: number;
+	title: string;
+	price: number;
+	description: string;
+	category: string;
+	image: string;
+	rating: { rate: number; count: number };
+}
 
 type Category = {
 	id: string;
