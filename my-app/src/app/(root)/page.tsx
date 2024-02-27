@@ -1,17 +1,8 @@
+import ProductCard from "@/components/Card";
+import GridView from "@/components/GridView";
 import Slider from "@/components/Slider";
-import { GridView } from "@mui/icons-material";
 import { Grid } from "@mui/material";
 import Image from "next/image";
-
-interface Product {
-	id: number;
-	title: string;
-	price: number;
-	description: string;
-	category: string;
-	image: string;
-	rating: { rate: number; count: number };
-}
 
 const Home = async () => {
 	const res = await fetch("https://fakestoreapi.com/products", {
@@ -24,26 +15,18 @@ const Home = async () => {
 	return (
 		<>
 			<Slider>
-				{p?.map((pro: Product, i: number) => (
+				{p?.map((pro: ProductBase, i: number) => (
 					<Image key={i} src={pro.image} width={200} height={200} alt="prod" />
 				))}
 			</Slider>
-			{p.map((pro: Product, i: number) => (
-				<Image key={i} src={pro.image} width={200} height={200} alt="prod" />
-			))}
-			{/* <GridView>
-				{p.map((pro: Product, i: number) => (
+
+			<GridView>
+				{p.map((pro: ProductBase, i: number) => (
 					<Grid item key={i} xs={1}>
-						<Image
-							key={i}
-							src={pro.image}
-							width={200}
-							height={200}
-							alt="prod"
-						/>
+						<ProductCard key={i} product={pro} />
 					</Grid>
 				))}
-			</GridView> */}
+			</GridView>
 		</>
 	);
 };
