@@ -41,7 +41,7 @@ const SearchDialog: FC<ISearchProps> = (): JSX.Element => {
 	return (
 		<>
 			<IconButton
-				size="large"
+				size="small"
 				aria-label="search"
 				color="inherit"
 				onClick={handleClickOpen}

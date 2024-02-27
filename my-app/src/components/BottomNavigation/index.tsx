@@ -10,6 +10,7 @@ import { Paper } from "@mui/material";
 import HeaderDrawer from "./Drawer";
 import BasketButton from "../Basket";
 import Link from "next/link";
+import { SearchDialog } from "../Search";
 
 const SimpleBottomNavigation = () => {
 	const [value, setValue] = React.useState(0);
@@ -58,7 +59,7 @@ const SimpleBottomNavigation = () => {
 					<BottomNavigationAction
 						color="inherit"
 						label="جستجو"
-						icon={<SearchIcon />}
+						icon={<SearchDialog />}
 					/>
 					<BottomNavigationAction
 						label="سبد خرید"
