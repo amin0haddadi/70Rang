@@ -13,6 +13,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import React, { FC } from "react";
 import LooksOneIcon from "@mui/icons-material/LooksOne";
 import BasketItem from "./BasketItems";
+import Link from "next/link";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
 	display: "flex",
@@ -108,7 +109,13 @@ const BasketDrawer: FC<IDrawerProps> = ({
 					</Typography>
 				</Box>
 				<Box borderTop="solid 2px lightgrey" paddingY={3}>
-					<Button variant="contained" fullWidth size="large">
+					<Button
+						variant="contained"
+						fullWidth
+						size="large"
+						LinkComponent={Link}
+						href="/checkout"
+					>
 						<Typography variant="h5">نهایی کردن خرید</Typography>
 					</Button>
 				</Box>
