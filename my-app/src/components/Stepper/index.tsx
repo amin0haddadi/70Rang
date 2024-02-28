@@ -10,6 +10,7 @@ import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import DoneAllIcon from "@mui/icons-material/DoneAll";
+import StepperPages from "./StepperPages";
 
 const steps = [
 	{ lable: " بررسی سبد خرید", icon: ShoppingCartCheckoutIcon },
@@ -93,7 +94,7 @@ export default function CheckoutStepper() {
 				</>
 			) : (
 				<>
-					<></>{" "}
+					<StepperPages activeStep={activeStep} />
 					<Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
 						<Button
 							color="inherit"
