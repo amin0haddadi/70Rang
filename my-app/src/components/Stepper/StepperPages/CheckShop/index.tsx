@@ -8,6 +8,7 @@ import {
 	TableBody,
 	Table,
 } from "@mui/material";
+import TableItem from "./TableItem";
 
 interface ICheckShopProps {}
 const CheckShop: FC<ICheckShopProps> = async () => {
@@ -20,7 +21,7 @@ const CheckShop: FC<ICheckShopProps> = async () => {
 	const p = await res.json();
 
 	return (
-		<TableContainer sx={{ mx: 10, my: 8 }}>
+		<TableContainer sx={{ my: 8 }}>
 			<Table sx={{ minWidth: 600 }} aria-label="simple table">
 				<TableHead>
 					<TableRow sx={{ " td,  th": { border: 0 } }}>
@@ -43,12 +44,9 @@ const CheckShop: FC<ICheckShopProps> = async () => {
 				<TableBody>
 					{p.map((pro: ProductBase) => (
 						<TableRow key={pro.id} sx={{ " td,  th": { border: 0 } }}>
-							<TableCell component="th" scope="row">
-								{pro.title.slice(0, 10)}
+							<TableCell colSpan={4}>
+								<TableItem product={pro} />
 							</TableCell>
-							<TableCell>{pro.price}</TableCell>
-							<TableCell>{pro.price}</TableCell>
-							<TableCell>{pro.category}</TableCell>
 						</TableRow>
 					))}
 				</TableBody>
