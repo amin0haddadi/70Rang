@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useLayoutEffect, useState } from "react";
 import {
 	Typography,
 	TableRow,
@@ -7,22 +7,29 @@ import {
 	TableCell,
 	TableBody,
 	Table,
+	Paper,
 } from "@mui/material";
 import TableItem from "./TableItem";
 
-interface ICheckShopProps {}
-const CheckShop: FC<ICheckShopProps> = async () => {
-	const res = await fetch("https://fakestoreapi.com/products", {
-		cache: "no-cache",
+const DesktopCheckShop = () => {
+	const [p, setP] = useState<any>();
+
+	useLayoutEffect(() => {
+		fetch("https://fakestoreapi.com/products")
+			.then((res) => res.json())
+			.then((data) => setP(data));
 	});
-	if (!res.ok) {
-		throw new Error("HTTP error! status:");
-	}
-	const p = await res.json();
 
 	return (
 		<TableContainer sx={{ my: 8 }}>
-			<Table sx={{ minWidth: 600 }} aria-label="simple table">
+			<Table
+				sx={{
+					minWidth: 600,
+					borderSpacing: "5px 15px",
+					borderCollapse: "separate",
+				}}
+				aria-label="simple table"
+			>
 				<TableHead>
 					<TableRow sx={{ " td,  th": { border: 0 } }}>
 						<TableCell>
@@ -42,11 +49,14 @@ const CheckShop: FC<ICheckShopProps> = async () => {
 					</TableRow>
 				</TableHead>
 				<TableBody>
-					{p.map((pro: ProductBase) => (
-						<TableRow key={pro.id} sx={{ " td,  th": { border: 0 } }}>
-							<TableCell colSpan={4}>
-								<TableItem product={pro} />
-							</TableCell>
+					{p?.map((pro: any) => (
+						<TableRow
+							key={pro.id}
+							sx={{ " td,  th": { border: 0 }, p: 5 }}
+							component={Paper}
+							elevation={5}
+						>
+							<TableItem product={pro} />
 						</TableRow>
 					))}
 				</TableBody>
@@ -55,4 +65,4 @@ const CheckShop: FC<ICheckShopProps> = async () => {
 	);
 };
 
-export default CheckShop;
+export default DesktopCheckShop;

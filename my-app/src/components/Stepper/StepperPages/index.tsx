@@ -1,14 +1,17 @@
 import { FC } from "react";
-import CheckShop from "./CheckShop";
+import DesktopCheckShop from "./CheckShop";
+import { useMediaQuery } from "@mui/material";
+import MobileCheckShop from "./MobileCheckShop";
 
 interface IStepperPagesProps {
 	activeStep: number;
 }
 const StepperPages: FC<IStepperPagesProps> = ({ activeStep }) => {
+	const isMobile = useMediaQuery("(max-width:700px)");
 	return (
 		<>
 			{activeStep === 0 ? (
-				<CheckShop />
+				<>{isMobile ? <MobileCheckShop /> : <DesktopCheckShop />}</>
 			) : activeStep === 1 ? (
 				<>Code block for step 1</>
 			) : activeStep === 2 ? (
