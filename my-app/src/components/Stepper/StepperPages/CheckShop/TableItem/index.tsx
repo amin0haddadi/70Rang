@@ -30,12 +30,10 @@ const TableItem: FC<TableItemProps> = ({ product }) => {
 				<Typography margin={2}>{product.title.slice(0, 15)}</Typography>
 			</TableCell>
 			<TableCell>
-				<Typography>{product.price} تومان</Typography>
+				<Typography textAlign={"center"}>{product.price} تومان</Typography>
 			</TableCell>
 			<TableCell>
-				<Typography>
-					<QuantityInput />
-				</Typography>
+				<QuantityInput />
 			</TableCell>
 			<TableCell>
 				<Typography>{product.rating.rate}</Typography>

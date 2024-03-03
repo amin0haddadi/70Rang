@@ -38,9 +38,11 @@ const DesktopCheckShop = () => {
 							</Typography>
 						</TableCell>
 						<TableCell>
-							<Typography color="grey">قیمت</Typography>
+							<Typography textAlign={"center"} color="grey">
+								قیمت
+							</Typography>
 						</TableCell>
-						<TableCell>
+						<TableCell align="center">
 							<Typography color="grey">تعداد</Typography>
 						</TableCell>
 						<TableCell>
