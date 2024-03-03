@@ -8,8 +8,11 @@ import {
 	TableBody,
 	Table,
 	Paper,
+	Box,
+	Divider,
 } from "@mui/material";
 import TableItem from "./TableItem";
+import TotalPrice from "../TotalPrice";
 
 const DesktopCheckShop = () => {
 	const [p, setP] = useState<any>();
@@ -21,11 +24,11 @@ const DesktopCheckShop = () => {
 	});
 
 	return (
-		<TableContainer sx={{ my: 8 }}>
+		<TableContainer sx={{ mt: 8 }}>
 			<Table
 				sx={{
 					minWidth: 600,
-					borderSpacing: "5px 15px",
+					borderSpacing: "5px 25px",
 					borderCollapse: "separate",
 				}}
 				aria-label="simple table"
@@ -63,6 +66,7 @@ const DesktopCheckShop = () => {
 					))}
 				</TableBody>
 			</Table>
+			<TotalPrice />
 		</TableContainer>
 	);
 };

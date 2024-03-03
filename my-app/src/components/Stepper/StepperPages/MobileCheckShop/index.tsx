@@ -1,8 +1,8 @@
 import { useLayoutEffect, useState } from "react";
 import { Box, Paper, Typography, Divider, IconButton } from "@mui/material";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import { relative } from "path";
 import QuantityInput from "@/components/Basket/BasketDrawer/BasketItems/NumberInput";
+import TotalPrice from "../TotalPrice";
 
 const MobileCheckShop = () => {
 	const [p, setP] = useState<any>();
@@ -61,6 +61,7 @@ const MobileCheckShop = () => {
 					</Box>
 				</Box>
 			))}
+			<TotalPrice />
 		</Box>
 	);
 };

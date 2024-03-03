@@ -26,7 +26,7 @@ const StepperButton: FC<IStepperButton> = ({ length }): JSX.Element => {
 					color="primary"
 					sx={{
 						mr: 1,
-						width: "25%",
+						width: "20%",
 						boxShadow: 7,
 					}}
 				>
@@ -42,7 +42,7 @@ const StepperButton: FC<IStepperButton> = ({ length }): JSX.Element => {
 					color="primary"
 					sx={{
 						mr: 1,
-						width: "30%",
+						width: "20%",
 						boxShadow: 7,
 						display: `${activeStep !== 1 && !isMobile ? "flex" : "none"}`,
 					}}
