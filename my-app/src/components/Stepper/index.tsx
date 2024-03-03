@@ -11,6 +11,10 @@ import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import DoneAllIcon from "@mui/icons-material/DoneAll";
 import StepperPages from "./StepperPages";
+import Link from "next/link";
+import { useMediaQuery } from "@mui/material";
+import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 
 const steps = [
 	{ lable: " بررسی سبد خرید", icon: ShoppingCartCheckoutIcon },
@@ -22,6 +26,7 @@ const steps = [
 export default function CheckoutStepper() {
 	const [activeStep, setActiveStep] = useState(0);
 	const [skipped, setSkipped] = useState(new Set<number>());
+	const isMobile = useMediaQuery("(max-width:700px)");
 
 	const isStepOptional = (step: number) => {
 		return step === 1;
@@ -95,23 +100,80 @@ export default function CheckoutStepper() {
 			) : (
 				<>
 					<StepperPages activeStep={activeStep} />
-					<Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
+					<Box
+						display={isMobile ? "none" : "flex"}
+						flexDirection={"row"}
+						pt={2}
+					>
 						<Button
-							color="inherit"
-							disabled={activeStep === 0}
+							type="button"
+							LinkComponent={Link}
+							href={activeStep === 0 ? "/" : ""}
 							onClick={handleBack}
-							sx={{ mr: 1 }}
+							color="primary"
+							sx={{
+								mr: 1,
+								width: "30%",
+								boxShadow: 7,
+							}}
 						>
-							Back
+							<NavigateNextIcon />
+							<Typography m={1} flexGrow={1} textAlign={"center"}>
+								بازگشت
+							</Typography>
 						</Button>
 						<Box sx={{ flex: "1 1 auto" }} />
-						{isStepOptional(activeStep) && (
-							<Button color="inherit" onClick={handleSkip} sx={{ mr: 1 }}>
-								Skip
-							</Button>
-						)}
-						<Button onClick={handleNext}>
-							{activeStep === steps.length - 1 ? "Finish" : "Next"}
+						<Button
+							onClick={handleNext}
+							variant="contained"
+							color="primary"
+							sx={{ mr: 1, width: "30%", boxShadow: 7 }}
+						>
+							<Typography m={1} flexGrow={1} textAlign={"center"}>
+								{activeStep === steps.length - 1 ? "Finish" : "ثبت سفارش"}
+							</Typography>
+							<NavigateBeforeIcon />
+						</Button>
+					</Box>
+					<Box
+						display={isMobile ? "flex" : "none"}
+						flexDirection={"row"}
+						pt={2}
+					>
+						<Button
+							type="button"
+							LinkComponent={Link}
+							href={activeStep === 0 ? "/" : ""}
+							onClick={handleBack}
+							color="primary"
+							fullWidth
+							sx={{
+								mr: 1,
+								boxShadow: 7,
+							}}
+						>
+							<NavigateNextIcon />
+							<Typography m={1} flexGrow={1} textAlign={"center"}>
+								بازگشت
+							</Typography>
+						</Button>
+					</Box>
+					<Box
+						display={isMobile ? "flex" : "none"}
+						flexDirection={"row"}
+						pt={2}
+					>
+						<Button
+							onClick={handleNext}
+							variant="contained"
+							color="primary"
+							fullWidth
+							sx={{ mr: 1, boxShadow: 7 }}
+						>
+							<Typography m={1} flexGrow={1} textAlign={"center"}>
+								{activeStep === steps.length - 1 ? "Finish" : "ثبت سفارش"}
+							</Typography>
+							<NavigateBeforeIcon />
 						</Button>
 					</Box>
 				</>
