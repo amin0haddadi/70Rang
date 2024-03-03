@@ -5,13 +5,14 @@ import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import DoneAllIcon from "@mui/icons-material/DoneAll";
 import StepperPages from "./StepperPages";
 import StepperButton from "./StepperButtons";
+import { ActiveStepContext } from "@/context/activeStep";
 
 const steps = [
 	{ lable: " بررسی سبد خرید", icon: ShoppingCartCheckoutIcon },
@@ -23,7 +24,7 @@ const steps = [
 const length = steps.length;
 
 export default function CheckoutStepper() {
-	const [activeStep, setActiveStep] = useState(0);
+	const { activeStep, setActiveStep } = useContext(ActiveStepContext);
 
 	const handleReset = () => {
 		setActiveStep(0);
@@ -59,11 +60,7 @@ export default function CheckoutStepper() {
 			) : (
 				<>
 					<StepperPages activeStep={activeStep} />
-					<StepperButton
-						activeStep={activeStep}
-						setActiveStep={setActiveStep}
-						length={length}
-					/>
+					<StepperButton length={length} />
 				</>
 			)}
 		</Box>

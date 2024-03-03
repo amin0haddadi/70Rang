@@ -5,43 +5,15 @@ import Link from "next/link";
 import { useMediaQuery } from "@mui/material";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
-import { FC, useState } from "react";
+import { FC, useContext, useState } from "react";
+import { ActiveStepContext } from "@/context/activeStep";
 
 interface IStepperButton {
-	activeStep: number;
-	setActiveStep: React.Dispatch<React.SetStateAction<number>>;
 	length: number;
 }
-const StepperButton: FC<IStepperButton> = ({
-	activeStep,
-	setActiveStep,
-	length,
-}): JSX.Element => {
-	const [skipped, setSkipped] = useState(new Set<number>());
+const StepperButton: FC<IStepperButton> = ({ length }): JSX.Element => {
 	const isMobile = useMediaQuery("(max-width:700px)");
-
-	const isStepOptional = (step: number) => {
-		return step === 1;
-	};
-
-	const isStepSkipped = (step: number) => {
-		return skipped.has(step);
-	};
-
-	const handleNext = () => {
-		let newSkipped = skipped;
-		if (isStepSkipped(activeStep)) {
-			newSkipped = new Set(newSkipped.values());
-			newSkipped.delete(activeStep);
-		}
-
-		setActiveStep((prevActiveStep) => prevActiveStep + 1);
-		setSkipped(newSkipped);
-	};
-
-	const handleBack = () => {
-		setActiveStep((prevActiveStep) => prevActiveStep - 1);
-	};
+	const { activeStep, handleNext, handleBack } = useContext(ActiveStepContext);
 
 	return (
 		<>
