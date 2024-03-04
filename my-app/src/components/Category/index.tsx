@@ -54,8 +54,6 @@ const CategoryMenu = () => {
 				sx={{
 					display: "flex",
 					flexWrap: "wrap",
-					minWidth: 500,
-					padding: 2,
 					gap: 2,
 					visibility: "hidden",
 					opacity: 0,

@@ -1,8 +1,85 @@
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { useState } from "react";
+import ChildTabs from "./ChildTabs";
+
+const categories = [
+	{
+		name: "آرایشی",
+		id: 1,
+		subCategory: [
+			{
+				name: "آرایش چشم",
+				id: 1,
+				subchild: ["ریمل", "سایه چشم", "مداد و خط چشم"],
+			},
+			{
+				name: "آرایش ابرو",
+				id: 2,
+				subchild: ["ریمل ابرو", "سایه چشم", "مداد و خط چشم"],
+			},
+			{
+				name: "آرایش صورت",
+				id: 3,
+				subchild: [
+					"ریمل ابرو",
+					"سایه چشم",
+					"مداد و خط چشم",
+					"ریمل ابرو",
+					"سایه چشم",
+					"مداد و خط چشم",
+				],
+			},
+			{
+				name: "آرایش لب",
+				id: 4,
+				subchild: ["ریمل ابرو", "سایه چشم", "مداد و خط چشم"],
+			},
+			{
+				name: "آرایش ناخن",
+				id: 5,
+				subchild: ["ریمل ابرو", "سایه چشم", "مداد و خط چشم"],
+			},
+		],
+	},
+
+	{
+		name: "پوست",
+		id: 2,
+		subCategory: [
+			{
+				"شوینده و پاک کننده": {
+					id: 1,
+					subchild: ["ریمل", "سایه چشم", "مداد و خط چشم"],
+				},
+				"محصولات پوست ": {
+					id: 2,
+					subchild: ["ریمل ابرو", "سایه چشم", "مداد و خط چشم"],
+				},
+				"محصولات درمانی پوست ": {
+					id: 3,
+					subchild: [
+						"ریمل ابرو",
+						"سایه چشم",
+						"مداد و خط چشم",
+						"ریمل ابرو",
+						"سایه چشم",
+						"مداد و خط چشم",
+					],
+				},
+				"مراقبت پوستی ": {
+					id: 4,
+					subchild: ["ریمل ابرو", "سایه چشم", "مداد و خط چشم"],
+				},
+				"اسپا ": {
+					id: 5,
+					subchild: ["ریمل ابرو", "سایه چشم", "مداد و خط چشم"],
+				},
+			},
+		],
+	},
+];
 
 const options = [
 	["ارایشی", "براق کننده", "رژلب جامد", "رژلب مایع"],
@@ -27,11 +104,7 @@ const TabPanel = (props: TabPanelProps) => {
 			aria-labelledby={`vertical-tab-${index}`}
 			{...other}
 		>
-			{value === index && (
-				<Box sx={{ p: 1 }}>
-					<Typography>{children}</Typography>
-				</Box>
-			)}
+			{value === index && <Box sx={{ p: 1 }}>{children}</Box>}
 		</Box>
 	);
 };
@@ -63,7 +136,6 @@ const VerticalTabs = () => {
 				bgcolor: "background.paper",
 				display: "flex",
 				height: 400,
-				minWidth: 650,
 			}}
 		>
 			<Tabs
@@ -72,23 +144,35 @@ const VerticalTabs = () => {
 				value={value}
 				onChange={handleChange}
 				aria-label="Vertical tabs example"
-				sx={{ borderRight: 1, borderColor: "divider" }}
+				sx={{
+					bgcolor: "#eeeeee",
+					py: 2,
+					"& .MuiTabs-indicator": {
+						display: "none",
+					},
+					borderRight: 1,
+					borderColor: "#eeeeee",
+				}}
 			>
-				{options?.map((x, i) => (
+				{categories?.map((x, i) => (
 					<Tab
-						label={x[0]}
+						label={x.name}
 						{...a11yProps(i)}
 						key={i}
 						onMouseEnter={(e) => handleHover(e, i)}
-						sx={{ fontSize: 17, fontWeight: 900, paddingX: 4 }}
+						sx={{
+							fontSize: 16,
+							fontWeight: 600,
+							paddingX: 4,
+							paddingY: 2,
+							":hover": { bgcolor: "background.paper" },
+						}}
 					/>
 				))}
 			</Tabs>
 			{options?.map((x, i) => (
 				<TabPanel value={value} index={i} key={i}>
-					{x[1]}
-					<br />
-					{x[2]}
+					<ChildTabs options={options} />
 				</TabPanel>
 			))}
 		</Box>
