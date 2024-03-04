@@ -2,12 +2,12 @@
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import MenuIcon from "@mui/icons-material/Menu";
-import { Box, Button } from "@mui/material";
+import { Box, Button, Paper } from "@mui/material";
 import { useEffect, useState } from "react";
 import { fetchCategories } from "@/lib/api/categories";
 import VerticalTabs from "./Tabs";
 
-const LongMenu = () => {
+const CategoryMenu = () => {
 	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 	const [categories, setCategories] = useState<any[]>([]);
 	const open = Boolean(anchorEl);
@@ -27,6 +27,13 @@ const LongMenu = () => {
 				display: "flex",
 				justifyContent: "center",
 				alignItems: "center",
+				position: "relative",
+				"&:hover": {
+					"& > .dropdown": {
+						visibility: "visible",
+						opacity: 1,
+					},
+				},
 			}}
 		>
 			<Button
@@ -37,28 +44,32 @@ const LongMenu = () => {
 				}}
 				aria-label="more"
 				id="long-button"
-				aria-controls={open ? "long-menu" : undefined}
-				aria-expanded={open ? "true" : undefined}
 				aria-haspopup="true"
-				onMouseOver={handleClick}
 				startIcon={<MenuIcon />}
 			>
 				دسته‌بندی
 			</Button>
-			<Menu
-				anchorEl={anchorEl}
-				open={open}
-				sx={{ display: { xs: "none", md: "block" } }}
+			<Paper
+				className="dropdown"
+				sx={{
+					display: "flex",
+					flexWrap: "wrap",
+					minWidth: 500,
+					padding: 2,
+					gap: 2,
+					visibility: "hidden",
+					opacity: 0,
+					zIndex: 100,
+					position: "absolute",
+					top: "72px",
+					left: "128%",
+					transform: "translateX(-50%)",
+					background: "#ffffff",
+				}}
 			>
-				<MenuItem
-					sx={{ padding: 0 }}
-					onMouseLeave={handleClose}
-					onClick={handleClose}
-				>
-					<VerticalTabs />
-				</MenuItem>
-			</Menu>
+				<VerticalTabs />
+			</Paper>
 		</Box>
 	);
 };
-export default LongMenu;
+export default CategoryMenu;

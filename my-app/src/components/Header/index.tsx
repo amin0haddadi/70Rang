@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import Link from "next/link";
 import BasketButton from "../Basket";
-import LongMenu from "../Category";
+import CategoryMenu from "../Category";
 import AuthDialog from "../AuthDialog";
 import { SearchDialog } from "../Search";
 
@@ -68,7 +68,7 @@ const Header: React.FC<IHeaderProps> = (): JSX.Element => {
 								display: { xs: "none", md: "flex", fontSize: 50 },
 							}}
 						>
-							<LongMenu />
+							<CategoryMenu />
 							{pages.map((page, i) => (
 								<Button
 									key={i}
