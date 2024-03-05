@@ -16,7 +16,7 @@ import { SearchDialog } from "../Search";
 import { useEffect, useState } from "react";
 
 const pages = [
-	{ title: "ست‌ها", href: "/sets" },
+	{ title: "پیشنهاد ویژه", href: "/specials" },
 	{ title: "خرید حضوری", href: "/shop" },
 ];
 
@@ -28,8 +28,7 @@ const Header: React.FC<IHeaderProps> = () => {
 
 	useEffect(() => {
 		const handleScroll = () => {
-			const currentScrollTop =
-				window.pageYOffset || document.documentElement.scrollTop;
+			const currentScrollTop = document.documentElement.scrollTop;
 			const scrolledDown = currentScrollTop > lastScrollTop;
 			setIsScrolledDown(scrolledDown);
 			setLastScrollTop(currentScrollTop);
@@ -48,7 +47,7 @@ const Header: React.FC<IHeaderProps> = () => {
 				position: "sticky",
 				top: 0,
 				zIndex: 1000,
-				transition: "opacity 0.3s",
+				transition: "opacity 0.5s",
 				opacity: isScrolledDown ? 0 : 1,
 			}}
 		>
@@ -70,7 +69,7 @@ const Header: React.FC<IHeaderProps> = () => {
 								textDecoration: "none",
 							}}
 						>
-							TurkStyle
+							70Rang
 						</Typography>
 						<Typography
 							variant="h5"
@@ -88,7 +87,7 @@ const Header: React.FC<IHeaderProps> = () => {
 								justifyContent: "center",
 							}}
 						>
-							TurkStyle
+							70Rang
 						</Typography>
 						<Box
 							sx={{
