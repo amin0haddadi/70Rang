@@ -80,8 +80,8 @@ const Hero = () => {
 								style={{
 									display: "block",
 									width: "100%",
-									height: "60vh",
-									aspectRatio: 3 / 2,
+									height: "60%",
+									aspectRatio: 3,
 								}}
 								src={step.imgPath}
 								alt={step.label}
