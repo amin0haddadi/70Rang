@@ -1,29 +1,37 @@
 import {
 	AppBar,
-	Badge,
 	Box,
 	Button,
 	Container,
+	IconButton,
 	Toolbar,
 	Typography,
 } from "@mui/material";
 import Link from "next/link";
+import AuthDialog from "../AuthDialog";
 import BasketButton from "../Basket";
 import CategoryMenu from "../Category";
-import AuthDialog from "../AuthDialog";
 import { SearchDialog } from "../Search";
 
 const pages = [
-	{ title: "فروش ویژه", href: "/special" },
-	{ title: "آدرس حضوری", href: "/shop" },
+	{ title: "ست‌ها", href: "/sets" },
+	{ title: "خرید حضوری", href: "/shop" },
 ];
 
 interface IHeaderProps {}
 
-const Header: React.FC<IHeaderProps> = (): JSX.Element => {
+const Header: React.FC<IHeaderProps> = () => {
 	return (
-		<Box sx={{ flexGrow: 1 }}>
-			<AppBar position="static">
+		<Box
+			sx={{
+				flexGrow: 1,
+				position: "sticky",
+				top: 0,
+				mb: 8,
+				zIndex: 1000,
+			}}
+		>
+			<AppBar>
 				<Container>
 					<Toolbar disableGutters>
 						<Typography
@@ -41,7 +49,7 @@ const Header: React.FC<IHeaderProps> = (): JSX.Element => {
 								textDecoration: "none",
 							}}
 						>
-							70Rang
+							TurkStyle
 						</Typography>
 						<Typography
 							variant="h5"
@@ -59,7 +67,7 @@ const Header: React.FC<IHeaderProps> = (): JSX.Element => {
 								justifyContent: "center",
 							}}
 						>
-							70Rang
+							TurkStyle
 						</Typography>
 						<Box
 							sx={{
