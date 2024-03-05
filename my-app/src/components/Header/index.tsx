@@ -1,3 +1,4 @@
+"use client";
 import {
 	AppBar,
 	Box,
@@ -12,6 +13,7 @@ import AuthDialog from "../AuthDialog";
 import BasketButton from "../Basket";
 import CategoryMenu from "../Category";
 import { SearchDialog } from "../Search";
+import { useEffect, useState } from "react";
 
 const pages = [
 	{ title: "ست‌ها", href: "/sets" },
@@ -21,17 +23,36 @@ const pages = [
 interface IHeaderProps {}
 
 const Header: React.FC<IHeaderProps> = () => {
+	const [lastScrollTop, setLastScrollTop] = useState(0);
+	const [isScrolledDown, setIsScrolledDown] = useState(false);
+
+	useEffect(() => {
+		const handleScroll = () => {
+			const currentScrollTop =
+				window.pageYOffset || document.documentElement.scrollTop;
+			const scrolledDown = currentScrollTop > lastScrollTop;
+			setIsScrolledDown(scrolledDown);
+			setLastScrollTop(currentScrollTop);
+		};
+
+		window.addEventListener("scroll", handleScroll);
+
+		return () => {
+			window.removeEventListener("scroll", handleScroll);
+		};
+	}, [lastScrollTop]);
 	return (
 		<Box
 			sx={{
 				flexGrow: 1,
 				position: "sticky",
 				top: 0,
-				mb: 8,
 				zIndex: 1000,
+				transition: "opacity 0.3s",
+				opacity: isScrolledDown ? 0 : 1,
 			}}
 		>
-			<AppBar>
+			<AppBar sx={{ backgroundColor: "rgba(0, 0, 0, 0.6)" }}>
 				<Container>
 					<Toolbar disableGutters>
 						<Typography
