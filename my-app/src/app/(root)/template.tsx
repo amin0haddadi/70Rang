@@ -5,10 +5,11 @@ import Hero from "@/components/Hero";
 import { Container } from "@mui/material";
 
 const Template = ({ children }: { children: React.ReactNode }) => {
+	const flag = true;
 	return (
 		<>
 			<Header />
-			<Hero />
+			{flag && <Hero />}
 			<Container component="main" sx={{ py: 5 }}>
 				{children}
 			</Container>
